@@ -2,7 +2,7 @@ const http = require("http")
 const Socket = require("websocket").server
 const server = http.createServer(() => {})
 
-server.listen(3000, () => {
+server.listen(6000, () => {
 
 })
 
@@ -15,7 +15,15 @@ webSocket.on('request', (req) => {
 
 
     connection.on('message', (message) => {
-        const data = JSON.parse(message.utf8Data)
+
+        // checking Json Parse
+        try {
+            const data = JSON.parse(message.utf8Data)
+        } catch (e) {
+            console.log('pass a json object please')
+            return false;
+        }
+
         console.log(data);
         const user = findUser(data.name)
 
@@ -90,6 +98,8 @@ webSocket.on('request', (req) => {
                         }
                     }))
                 }
+                break
+            default:
                 break
 
 
