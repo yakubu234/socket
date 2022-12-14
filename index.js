@@ -1,12 +1,14 @@
 const http = require("http")
 const Socket = require("websocket").server
 const server = http.createServer(() => {})
+const WebSocketServer = require('ws');
 
-server.listen(6000, () => {
+// server.listen(6000, () => {
 
-})
+// })
 
-const webSocket = new Socket({ httpServer: server })
+// const webSocket = new Socket({ httpServer: server })
+const webSocket = new WebSocketServer.Server({ port: 6000 })
 
 const users = []
 
